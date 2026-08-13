@@ -533,7 +533,10 @@ tf_cuda_only_cc_test(
     name = "gpu_prim_helpers_test",
     srcs = ["gpu_prim_helpers_test.cu.cc"],
     features = if_cuda(["-layering_check"]),
-    tags = ["no_cuda_asan"],  # TODO(b/183963619)
+    tags = [
+        "no_cuda_asan",  # TODO(b/183963619)
+        "requires-gpu-sm80",
+    ],
     deps = [
         ":gpu_prim_helpers",
         ":ops_testutil",
@@ -4724,7 +4727,7 @@ tf_cuda_cc_test(
     ],
 )
 
-tf_cuda_cc_test(
+tf_cuda_only_cc_test(
     name = "nn_ops_gpu_test",
     srcs = ["nn_ops_gpu_test.cc"],
     tags = tf_cuda_tests_tags() + [
@@ -5980,6 +5983,9 @@ tf_kernel_library(
     name = "string_ngrams_op",
     srcs = ["string_ngrams_op.cc"],
     deps = STRING_DEPS + [
+        "@com_google_absl//absl/log:check",
+        "@com_google_absl//absl/status",
+        "@com_google_absl//absl/status:statusor",
         "@com_google_absl//absl/strings",
     ],
 )
@@ -5989,7 +5995,6 @@ tf_cc_test(
     srcs = ["string_ngrams_op_test.cc"],
     deps = [
         ":ops_testutil",
-        ":ops_util",
         ":string_ngrams_op",
         "//tensorflow/core:framework",
         "//tensorflow/core:lib",
@@ -5997,6 +6002,7 @@ tf_cc_test(
         "//tensorflow/core:test",
         "//tensorflow/core:test_main",
         "//tensorflow/core:testlib",
+        "@com_google_googletest//:gtest",
     ],
 )
 

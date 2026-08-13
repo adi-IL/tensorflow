@@ -1223,6 +1223,7 @@ py_library(
 py_library(
     name = "cond",
     srcs = ["cond.py"],
+    lazy_imports = True,
     strict_deps = True,
     deps = [
         ":array_ops",
@@ -1372,6 +1373,7 @@ py_library(
     srcs = [
         "cond_v2.py",
     ],
+    lazy_imports = True,
     strict_deps = True,
     deps = [
         ":array_ops",
@@ -2811,6 +2813,7 @@ cuda_py_strict_test(
         ":rnn_grad",
         ":rnn_ops_gen",
         "//tensorflow/python/framework:dtypes",
+        "//tensorflow/python/framework:errors",
         "//tensorflow/python/framework:ops",
         "//tensorflow/python/framework:test_lib",
         "//tensorflow/python/platform:client_testlib",
@@ -4207,6 +4210,7 @@ cuda_py_strict_test(
     size = "medium",
     srcs = ["nn_grad_test.py"],
     main = "nn_grad_test.py",
+    tags = ["requires-gpu-sm80"],
     deps = [
         ":array_ops",
         ":gradient_checker",

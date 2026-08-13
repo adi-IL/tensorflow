@@ -221,7 +221,7 @@ tf_cc_test(
 tf_cuda_cc_test(
     name = "create_pjrt_client_util_test",
     srcs = ["create_pjrt_client_util_test.cc"],
-    tags = tf_cuda_tests_tags() + [
+    tags = [
         "noasan",
         "nomsan",
         "notsan",

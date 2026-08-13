@@ -61,6 +61,7 @@ cc_library(
         "@com_google_absl//absl/log",
         "@com_google_absl//absl/status",
         "@com_google_absl//absl/status:status_macros",
+        "@com_google_absl//absl/status:statusor",
         "@com_google_absl//absl/strings",
         "@local_config_cuda//cuda:cuda_headers",
         "@local_config_cuda//cuda:cupti_headers",
@@ -134,7 +135,6 @@ cc_library(
     tags = [
         "cuda-only",
         "gpu",
-        "requires-gpu-nvidia",
     ],
     deps = [
         "@com_google_absl//absl/base:no_destructor",
@@ -153,7 +153,6 @@ xla_cc_test(
         "gpu",
         "no_mac",
         "nomsan",  # Disable  msan for cuda related tests.
-        "requires-gpu-nvidia",
     ],
     deps = [
         ":cuda_version_variants",
@@ -289,6 +288,7 @@ xla_test(
         ":mock_cupti",
         "//xla/tsl/profiler/utils:time_utils",
         "@com_google_absl//absl/status",
+        "@com_google_absl//absl/status:status_matchers",
         "@com_google_googletest//:gtest_main",
         "@local_config_cuda//cuda:cupti_headers",
     ],
@@ -352,6 +352,7 @@ cc_library(
         "@com_google_absl//absl/log:check",
         "@com_google_absl//absl/status",
         "@com_google_absl//absl/status:status_macros",
+        "@com_google_absl//absl/status:statusor",
         "@com_google_absl//absl/strings",
         "@com_google_absl//absl/strings:string_view",
         "@com_google_absl//absl/synchronization",
@@ -727,6 +728,8 @@ cc_library(
         "@com_google_absl//absl/hash",
         "@com_google_absl//absl/log",
         "@com_google_absl//absl/log:check",
+        "@com_google_absl//absl/status",
+        "@com_google_absl//absl/status:statusor",
         "@com_google_absl//absl/strings",
         "@com_google_absl//absl/strings:str_format",
         "@com_google_absl//absl/synchronization",
@@ -828,7 +831,6 @@ xla_cc_test(
         "cuda-only",
         "gpu",
         "no_mac",
-        "requires-gpu-nvidia",
     ],
     deps = [
         ":ondevice_event_exporter",
@@ -960,6 +962,7 @@ xla_test(
         ":profile_with_cuda_kernels",
         "@com_google_absl//absl/log",
         "@com_google_absl//absl/status",
+        "@com_google_absl//absl/status:status_matchers",
         "@com_google_absl//absl/time",
         "@com_google_googletest//:gtest_main",
         "@local_config_cuda//cuda:cuda_headers",
