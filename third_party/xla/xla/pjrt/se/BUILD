@@ -319,6 +319,7 @@ xla_cc_test(
     deps = [
         ":local_device_state",
         ":pjrt_stream_executor_client",
+        ":stream_executor_executable",
         ":stream_executor_platform_id_mapping",
         "//xla:debug_options_flags",
         "//xla:future",
@@ -341,8 +342,8 @@ xla_cc_test(
         "//xla/pjrt/plugin/xla_cpu:cpu_topology",
         "//xla/pjrt/plugin/xla_cpu:cpu_topology_description",
         "//xla/runtime:device_id",
-        "//xla/service:computation_placer_hdr",
         "//xla/service:cpu_plugin",
+        "//xla/service:device_assignment",
         "//xla/service:platform_util",
         "//xla/stream_executor:platform",
         "//xla/stream_executor:stream_executor_h",
